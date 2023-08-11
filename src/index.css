@@ -33,6 +33,7 @@ code {
   font-size: 15px !important;
   font-weight: 400 !important;
   line-height: 22px !important;
+  color: #4B465C !important;
 }
 
 .custom-pagination-button{
@@ -73,3 +74,85 @@ code {
 .chart-container {
   height: 400px !important; 
 }
+
+
+.ant-table-thead th {
+  background-color: white !important;
+   font-size: 13px !important;
+   font-family: 'Open Sans', sans-serif;
+   font-weight: 600 !important;
+}
+
+.ant-table {
+  border-radius: 0 !important; /* Reset border radius to 0 */
+}
+
+.ant-pagination-options-size-changer {
+  position: absolute;
+  top:-49px;
+  left: 55px;
+}
+
+.ant-select-selection {
+  padding: 16px !important; /* Adjust padding as needed */
+}
+
+.ant-select.ant-select-enabled .ant-select-selection {
+  padding: 25px !important; /* Adjust padding as needed */
+}
+/* .ant-pagination-options-size-changer .ant-select-dropdown-menu-item {
+  /* padding: 15px 10px !important;  
+}  */
+
+/* .ant-pagination-options-size-changer .ant-select-dropdown-menu-item .ant-select-item-option-content {
+  padding: 20px !important; 
+  font-size: 20px !important;
+} */
+
+
+.ant-tag {
+  color: #5D596C !important;
+  display: flex;
+  align-items: center; 
+  padding: 2px, 8px, 2px, 8px;
+}
+
+.ant-tag .anticon {
+  color: #5D596C !important; /* Change icon color */
+}
+
+.ant-modal-footer .ant-btn-primary {
+  background-color: #002550; /* Change background color */ /* Change border color */
+  color: white; /* Change text color */
+  width: 76px;
+  height: 38px;
+}
+
+.ant-modal-footer .ant-btn-primary:hover {
+  background-color: #001d3d !important; /* Change background color */ /* Change border color */
+
+}
+
+.ant-modal-footer {
+  text-align: center !important;
+  margin-top: 20px !important;
+} 
+.ant-modal-footer .ant-btn-default {
+  background-color: rgba(168, 170, 174, 0.16); /* Change background color */
+border: none; /* Change border color */
+  color: #A8AAAE; /* Change text color */
+  height: 38px;
+  width: 91px;
+}
+
+
+.ant-modal-footer .ant-btn-default {
+opacity: .9;
+color: #A8AAAE !important;
+}
+
+
+.ant-modal-footer .ant-btn:hover {
+  opacity: 0.8 !important; /* Change opacity on hover */
+}
+

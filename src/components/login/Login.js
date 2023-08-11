@@ -4,12 +4,13 @@ import eye from '../../assets/eye-slash.png'
 import captcha from '../../assets/logos_recaptcha.png'
 import {AiOutlineEye, AiOutlineEyeInvisible} from 'react-icons/ai'
 import ReCAPTCHA from "react-google-recaptcha";
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false)
     const [verify, setVerify] = useState(false)
+    const naviagate = useNavigate()
    
 
     const handlePassword = (e) => {
@@ -49,7 +50,7 @@ const Login = () => {
             </form>
 
             <div>
-                    <button type='submit' className='bg-[#002550] w-full h-[44px] rounded-[8px] text-white font-inter font-[500]'>Verify</button>
+                    <button type='submit' className='bg-[#002550] w-full h-[44px] rounded-[8px] text-white font-inter font-[500]' onClick={()=> naviagate('/dashboard')}>Verify</button>
                 </div>
 
                 <div className='w-full flex h-[59px] items-center justify-between border-[#1A1A1A] border-opacity-20 border-[1px] rounded-[8px] shadow-sm px-5 -mt-4'>

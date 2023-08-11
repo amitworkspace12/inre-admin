@@ -1,65 +1,428 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { IoIosSearch } from 'react-icons/io'
 import { IoNotificationsOutline } from 'react-icons/io5'
 import Pic  from '../../assets/Avatar.png'
 import { Avatar } from 'antd'
-import TableItem from './TableItem'
+import TableItem from '../common/TableItem'
 import Graph from './Graph'
+import pencil from '../../assets/pencil.png'
+import eye from '../../assets/eye.png'
+import trash from '../../assets/trash.png'
+import HeaderSearch from '../common/HeaderSearch'
 
 
 
+  
+  const columns = [
+    {
+      title: "FULL NAME",
+      dataIndex: "name",
+      sorter: {
+        compare: (a, b) => a.name - b.name,
+        multiple: 4,
+      },
+      render: (text, record) => (
+        <span className="custom-column-style font-[600]">{text}</span>
+      ),
+    },
+    {
+      title: "EMAIL",
+      dataIndex: "email",
+      sorter: {
+        compare: (a, b) => a.email - b.email,
+        multiple: 3,
+      },
+    },
+    {
+      title: "PROPERTY TYPE",
+      dataIndex: "property",
+      sorter: {
+        compare: (a, b) => a.property - b.property,
+        multiple: 2,
+      },
+    },
+    {
+      title: "STAGE",
+      dataIndex: "stage",
+      sorter: {
+        compare: (a, b) => a.stage - b.stage,
+        multiple: 1,
+      },
+    },
+    {
+      title: "Actions",
+      dataIndex: "actions",
+      key: "actions",
+      render: (text, record) => (
+          <div className="flex gap-4">
+        {/* <Button onClick={() => handleAction(record)}>Action</Button> */}
+        <img src={trash} className='w-[22px] h-[22px] cursor-pointer'/>
+        <img src={pencil} className='w-[22px] h-[22px] cursor-pointer'/>
+        <img src={eye} className='w-[22px] h-[22px] cursor-pointer'/>
+        </div>
+      ),
+    },
+  ];
 const DashboardItem = () => {
-    
+    const [dataSource, setDataSource] = useState([
+
+        {
+          key:1,
+          name:'Amit',
+          email: "ram@hotmail.com",
+          property: "Basti",
+          stage: "i'm still Working",
+        },
+      
+        {
+          key:2,
+          name:'Suraj',
+          email: "Herminia47@hotmail.com",
+          property: "Villas",
+          stage: "i'm still searching",
+        },
+      
+        {
+          key:3,
+          name:'Aohn Brown',
+          email: "Herminia47@hotmail.com",
+          property: "Villas",
+          stage: "i'm still searching",
+        },
+      
+      
+        {
+          key:100,
+          name:'Aohn Brown',
+          email: "Herminia47@hotmail.com",
+          property: "Villas",
+          stage: "i'm still searching",
+        },
+      
+        {
+          key:4,
+          name:'Aohn Brown',
+          email: "Herminia47@hotmail.com",
+          property: "Villas",
+          stage: "i'm still searching",
+        },
+      
+        {
+          key:5,
+          name:'Aohn Brown',
+          email: "Herminia47@hotmail.com",
+          property: "Villas",
+          stage: "i'm still searching",
+        },
+        {
+          key:6,
+          name:'Aohn Brown',
+          email: "Herminia47@hotmail.com",
+          property: "Villas",
+          stage: "i'm still searching",
+        },
+        {
+          key:7,
+          name:'Aohn Brown',
+          email: "Herminia47@hotmail.com",
+          property: "Villas",
+          stage: "i'm still searching",
+        },
+        {
+          key:8,
+          name:'Aohn Brown',
+          email: "Herminia47@hotmail.com",
+          property: "Villas",
+          stage: "i'm still searching",
+        },
+        {
+          key:9,
+          name:'Aohn Brown',
+          email: "Herminia47@hotmail.com",
+          property: "Villas",
+          stage: "i'm still searching",
+        },
+        {
+          key:10,
+          name:'Aohn Brown',
+          email: "Herminia47@hotmail.com",
+          property: "Villas",
+          stage: "i'm still searching",
+        },
+        {
+          key:11,
+          name:'Aohn Brown',
+          email: "Herminia47@hotmail.com",
+          property: "Villas",
+          stage: "i'm still searching",
+        },
+        {
+          key:12,
+          name:'Aohn Brown',
+          email: "Herminia47@hotmail.com",
+          property: "Villas",
+          stage: "i'm still searching",
+        },
+        {
+          key:13,
+          name:'Aohn Brown',
+          email: "Herminia47@hotmail.com",
+          property: "Villas",
+          stage: "i'm still searching",
+        },
+        {
+          key:14,
+          name:'Aohn Brown',
+          email: "Herminia47@hotmail.com",
+          property: "Villas",
+          stage: "i'm still searching",
+        },
+        {
+          key:15,
+          name:'Aohn Brown',
+          email: "Herminia47@hotmail.com",
+          property: "Villas",
+          stage: "i'm still searching",
+        },
+        {
+          key:16,
+          name:'Aohn Brown',
+          email: "Herminia47@hotmail.com",
+          property: "Villas",
+          stage: "i'm still searching",
+        },
+        {
+          key:17,
+          name:'Aohn Brown',
+          email: "Herminia47@hotmail.com",
+          property: "Villas",
+          stage: "i'm still searching",
+        },
+        {
+          key:18,
+          name:'Aohn Brown',
+          email: "Herminia47@hotmail.com",
+          property: "Villas",
+          stage: "i'm still searching",
+        },
+        {
+          key:19,
+          name:'Aohn Brown',
+          email: "Herminia47@hotmail.com",
+          property: "Villas",
+          stage: "i'm still searching",
+        },
+        {
+          key:20,
+          name:'Saurabh',
+          email: "Herminia47@hotmail.com",
+          property: "Villas",
+          stage: "i'm still searching",
+        },
+        {
+          key:21,
+          name:'Aohn Brown',
+          email: "Herminia47@hotmail.com",
+          property: "Villas",
+          stage: "i'm still searching",
+        },
+        {
+          key:22,
+          name:'Aohn Brown',
+          email: "Herminia47@hotmail.com",
+          property: "Villas",
+          stage: "i'm still searching",
+        },
+        {
+          key:23,
+          name:'Aohn Brown',
+          email: "Herminia47@hotmail.com",
+          property: "Villas",
+          stage: "i'm still searching",
+        },
+        {
+          key:24,
+          name:'Aohn Brown',
+          email: "Herminia47@hotmail.com",
+          property: "Villas",
+          stage: "i'm still searching",
+        },
+        {
+          key:25,
+          name:'Aohn Brown',
+          email: "Herminia47@hotmail.com",
+          property: "Villas",
+          stage: "i'm still searching",
+        },
+        {
+          key:26,
+          name:'Aohn Brown',
+          email: "Herminia47@hotmail.com",
+          property: "Villas",
+          stage: "i'm still searching",
+        },
+        {
+          key:27,
+          name:'Aohn Brown',
+          email: "Herminia47@hotmail.com",
+          property: "Villas",
+          stage: "i'm still searching",
+        },
+        {
+          key:28,
+          name:'Aohn Brown',
+          email: "Herminia47@hotmail.com",
+          property: "Villas",
+          stage: "i'm still searching",
+        },
+        {
+          key:29,
+          name:'Aohn Brown',
+          email: "Herminia47@hotmail.com",
+          property: "Villas",
+          stage: "i'm still searching",
+        },
+        {
+          key:30,
+          name:'Aohn Brown',
+          email: "Herminia47@hotmail.com",
+          property: "Villas",
+          stage: "i'm still searching",
+        },
+        {
+          key:31,
+          name:'Aohn Brown',
+          email: "Herminia47@hotmail.com",
+          property: "Villas",
+          stage: "i'm still searching",
+        },
+        {
+          key:32,
+          name:'Aohn Brown',
+          email: "Herminia47@hotmail.com",
+          property: "Villas",
+          stage: "i'm still searching",
+        },
+        {
+          key:33,
+          name:'Aohn Brown',
+          email: "Herminia47@hotmail.com",
+          property: "Villas",
+          stage: "i'm still searching",
+        },
+        {
+          key:34,
+          name:'Aohn Brown',
+          email: "Herminia47@hotmail.com",
+          property: "Villas",
+          stage: "i'm still searching",
+        },
+        {
+          key:35,
+          name:'Aohn Brown',
+          email: "Herminia47@hotmail.com",
+          property: "Villas",
+          stage: "i'm still searching",
+        },
+        {
+          key:36,
+          name:'Aohn Brown',
+          email: "Herminia47@hotmail.com",
+          property: "Villas",
+          stage: "i'm still searching",
+        },
+        {
+          key:37,
+          name:'Aohn Brown',
+          email: "Herminia47@hotmail.com",
+          property: "Villas",
+          stage: "i'm still searching",
+        },
+        {
+          key:38,
+          name:'Aohn Brown',
+          email: "Herminia47@hotmail.com",
+          property: "Villas",
+          stage: "i'm still searching",
+        },
+        {
+          key:39,
+          name:'Aohn Brown',
+          email: "Herminia47@hotmail.com",
+          property: "Villas",
+          stage: "i'm still searching",
+        },
+        {
+          key:40,
+          name:'Aohn Brown',
+          email: "Herminia47@hotmail.com",
+          property: "Villas",
+          stage: "i'm still searching",
+        },
+        {
+          key:41,
+          name:'Aohn Brown',
+          email: "Herminia47@hotmail.com",
+          property: "Villas",
+          stage: "i'm still searching",
+        },
+        {
+          key:42,
+          name:'Aohn Brown',
+          email: "Herminia47@hotmail.com",
+          property: "Villas",
+          stage: "i'm still searching",
+        },
+        {
+        key:43,
+        name:'Aohn Brown',
+        email: "Herminia47@hotmail.com",
+        property: "Villas",
+        stage: "i'm still searching",
+        }
+      
+      
+      ])
+  
+
+    // useEffect(() => {
+    //     if (searchQuery.trim() === '') {
+    //         setDataSource(data);
+    //     } else {
+    //       const filteredResults = data.filter((item) =>
+    //         Object.values(item).some((value) =>
+    //           value.toString().toLowerCase().includes(searchQuery.toLowerCase())
+    //         )
+    //       );
+    //       setDataSource(filteredResults);
+    //     }
+    //   }, [searchQuery]);
+
+
+    //   useEffect(() => {
+    //     if (searchQuery.trim() === '') {
+    //         setDataSource(data);
+    //     } else {
+    //       const filteredResults = data.filter((item) =>
+    //         Object.values(item).some((value) =>
+    //           String(value).toLowerCase().includes(searchQuery.toLowerCase())
+    //         )
+    //       );
+    //       setDataSource(filteredResults);
+    //       console.log(dataSource.length)
+    //       console.log(dataSource)
+    //     }
+    //   }, [searchQuery]);
 
   return (
   <>
     <div className='p-3 w-[80%] grid gap-5 box-border pb-20'>
-      <div className='flex w-full bg-white items-center h-[62px] rounded-[6px] px-5 justify-between'>
-        <div className='w-[70%] relative'>
-        <input type='text' className='w-full p-1 pl-8 outline-none font-opensans font-[400] text-[15px]' placeholder='Search (Ctrl+/)'/>
-        <IoIosSearch size={25} color='#4B465C' className='absolute top-[50%] translate-y-[-50%] opacity-80'/>
-      </div>
-
-      <div className='flex gap-5 items-center'>
-      <div className='relative w-fit cursor-pointer'>
-       <IoNotificationsOutline size={25}/>
-       <p className='absolute text-[12px] font-publicsans h-[14px] w-[14px] rounded-full bg-[red] text-white grid place-content-center -top-[1px] right-0 leading-[14px]'>4</p>
-      </div>
-
-      <div className='relative w-fit cursor-pointer'>
-      <Avatar size="large" src={Pic} />
-      <div className='h-[13px] w-[13px] rounded-full bg-[#28C76F] absolute bottom-1 right-0 border-[3px] border-white'></div>
-      </div>
-      </div>
-    </div>
+     <HeaderSearch/>
 <div className='flex flex-col gap-3 h-fit'>
     <p className='text-[18px] font-[500] font-poppins leading-[27px]'>User Details</p>
-    <div className='flex justify-between'>
-        <div className='flex items-center gap-4'>
-            <p className='font-[400] text-[15px] leading-[22px]'>Show</p>
-            <select className='h-[38px] w-[100px] px-2 rounded-[4px] outline-none border-[#DBDADE] border-[1px]'>
-                <option>
-                    10
-                </option>
-                <option>
-                    20
-                </option>
-                <option>
-                    30
-                </option>
-                <option>
-                    40
-                </option>
-            </select>
-            <p className='font-[400] text-[15px] leading-[22px]'>Entries</p>
-        </div>
-        <div>
-            <label>Search : </label>
-            <input type='text' placeholder='Placeholder' className='rounded-[6px] border-[#DBDADE] border-[1px] h-[38px] px-2 outline-none'/>
-        </div>
-    </div>
+    
 </div>
-    <TableItem/>
+    <TableItem data={dataSource} columns={columns}/>
     <div className='font-publicsans bg-white p-10 rounded-[6px] grid gap-8'>
         <div>
             <p className='font-[600] text-[22px] text-[#4B465C] font-publicsans'>Balance</p>
