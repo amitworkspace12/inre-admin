@@ -1,6 +1,8 @@
 import { Select, Tag } from "antd";
 import React, { useEffect, useState } from "react";
 import square from '../../assets/square-plus.png'
+import HeaderSearch from "../common/HeaderSearch";
+import Sidebar from "../common/Sidebar";
 
 const countryList = [
     {label: "Albania", value: "AL"},
@@ -254,28 +256,29 @@ const countryList = [
   ]
   
 
-const PersonalDetails = ({edit, setEdit, setEditActive, dataSource, setDataSource}) => {
+const PersonalDetails = ({page, setPage,  subPage, setSubPage}) => {
   const [email, setEmail] = useState('')
   const [name, setName] = useState('')
   const [mobile, setMobile] = useState('')
   const [country, setCountry] = useState('India')
   const [stage, setStage] = useState("")
   const [key, setKey] = useState(-1)
+  const [edit, setEdit] = useState(false)
   
   
 
 
-  useEffect(()=> {
-    setKey(localStorage.getItem('key'))
+  // useEffect(()=> {
+  //   setKey(localStorage.getItem('key'))
    
-      setEmail(dataSource[key]?.email)
-      setName(dataSource[key]?.name)
-      setMobile(dataSource[key]?.mobile)
-      setStage(dataSource[key]?.stage)
-      setCountry(dataSource[key]?.country)
-      console.log({email, name, stage, country})
+  //     setEmail(dataSource[key]?.email)
+  //     setName(dataSource[key]?.name)
+  //     setMobile(dataSource[key]?.mobile)
+  //     setStage(dataSource[key]?.stage)
+  //     setCountry(dataSource[key]?.country)
+  //     console.log({email, name, stage, country})
     
-  },[key])
+  // },[key])
 
     const [tags, setTags] = useState(['Villa', '4BHK'])
     const [tagValue, setTagValue] = useState('')
@@ -302,19 +305,23 @@ const PersonalDetails = ({edit, setEdit, setEditActive, dataSource, setDataSourc
       },[tags])
 
   return (
-    
+    <div className='w-full min-h-[100vh] flex items-start'>
+      <Sidebar page={page} setPage={setPage} subPage={subPage} setSubPage={setSubPage}/>
+    <div className='p-3 w-[100%] lg:w-[80%] grid gap-5 box-border pb-20 bg-[#F7F6F9]'>
+     <HeaderSearch/>
     <div className="px-6 grid gap-5">
-      <div className="flex justify-between mt-3">
+      <div className="flex md:justify-between mt-3 flex-col md:flex-row  gap-4 md:gap-0">
         <p className="text-[18px] font-[500] font-poppins leading-[27px]">
           Your personal details
         </p>
+        <div className="flex">
         {
-          edit ? <button className="w-[205px] h-[48px] text-[#4B4B4B] border-[1px] border-[#4B4B4B] rounded-[8px] text-[17px] font-publicsans font-[500] outline-none hover:opacity-90" onClick={()=>{setEdit(false); setEditActive(false)}}>Save</button> : <button onClick={()=>setEdit(true)} className="underline"> Edit</button>
+          edit ? <button className="w-[205px] h-[48px] text-[#4B4B4B] border-[1px] border-[#4B4B4B] rounded-[8px] text-[17px] font-publicsans font-[500] outline-none hover:opacity-90" onClick={()=>{setEdit(false)}}>Save</button> : <button onClick={()=>setEdit(true)} className="underline"> Edit</button>
         }
-        
+        </div>
       </div>
 
-      <div className="grid grid-cols-2 w-[80%] gap-x-20  gap-10 font-opensans">
+      <div className="grid md:grid-cols-2 lg:w-[80%] w-full gap-x-20  gap-10 font-opensans">
         <div className="flex flex-col w-full gap-[6px]">
           <label
             className="font-[400] text-[14px] leading-[20px] text-[#002550]"
@@ -323,7 +330,7 @@ const PersonalDetails = ({edit, setEdit, setEditActive, dataSource, setDataSourc
             Full Name
           </label>
           <input
-          value={name}
+            disabled={edit ? "" : "disabled"}
             type="text"
             className="w-full border-[1px] border-[#1A1A1A] outline-none  rounded-[8px] h-[44px] px-2 placeholder:text-[#1a1a1a] placeholder:font-[400] placeholder:opacity-20 border-opacity-20 bg-transparent"
             placeholder="Enter Moblie Number"
@@ -340,7 +347,7 @@ const PersonalDetails = ({edit, setEdit, setEditActive, dataSource, setDataSourc
             Email
           </label>
           <input
-          value={email}
+        disabled={edit ? "" : "disabled"}
             type="text"
             className="w-full border-[1px] border-[#1A1A1A] outline-none  rounded-[8px] h-[44px] px-2 placeholder:text-[#1a1a1a] placeholder:font-[400] placeholder:opacity-20 border-opacity-20 bg-transparent"
             placeholder="Enter Email"
@@ -357,7 +364,7 @@ const PersonalDetails = ({edit, setEdit, setEditActive, dataSource, setDataSourc
             Mobile
           </label>
           <input
-          value={mobile}
+           disabled={edit ? "" : "disabled"}
             type="text"
             className="w-full border-[1px] border-[#1A1A1A] outline-none  rounded-[8px] h-[44px] px-2 placeholder:text-[#1a1a1a] placeholder:font-[400] placeholder:opacity-20 border-opacity-20 bg-transparent"
             placeholder="Enter Moblie Number"
@@ -374,7 +381,9 @@ const PersonalDetails = ({edit, setEdit, setEditActive, dataSource, setDataSourc
           </label>
           
 
-          <select  className="w-full border-[1px] border-[#1A1A1A] outline-none  rounded-[8px] h-[44px] px-2 placeholder:text-[#1a1a1a] placeholder:font-[400] placeholder:opacity-20 border-opacity-20 bg-transparent" defaultValue={country}>
+          <select  className="w-full border-[1px] border-[#1A1A1A] outline-none  rounded-[8px] h-[44px] px-2 placeholder:text-[#1a1a1a] placeholder:font-[400] placeholder:opacity-20 border-opacity-20 bg-transparent" defaultValue={country}
+           disabled={edit ? "" : "disabled"}
+          >
             {
               countryList.map((item) => (
                 <option key={item.value}>{item.label}</option>
@@ -391,7 +400,7 @@ const PersonalDetails = ({edit, setEdit, setEditActive, dataSource, setDataSourc
             Stage
           </label>
           <input
-          value={stage}
+         disabled={edit ? "" : "disabled"}
             type="text"
             className="w-full border-[1px] border-[#1A1A1A] outline-none  rounded-[8px] h-[44px] px-2 placeholder:text-[#1a1a1a] placeholder:font-[400] placeholder:opacity-20 border-opacity-20 bg-transparent"
             placeholder="Stage"
@@ -408,6 +417,7 @@ const PersonalDetails = ({edit, setEdit, setEditActive, dataSource, setDataSourc
           </label>
           <div className="w-full relative">
           <input
+           disabled={edit ? "" : "disabled"}
             type="text"
             className="w-full border-[1px] border-[#1A1A1A] outline-none  rounded-[8px] h-[38px] px-2 placeholder:text-[#1a1a1a] placeholder:font-[400] placeholder:opacity-20 border-opacity-20 bg-transparent"
             placeholder="Property type"
@@ -428,6 +438,8 @@ const PersonalDetails = ({edit, setEdit, setEditActive, dataSource, setDataSourc
     </div>
         </div>
       </div>
+    </div>
+    </div>
     </div>
   );
 };

@@ -4,10 +4,19 @@ import pencil from '../../../assets/pencil.png'
 import eye from '../../../assets/eye.png'
 import trash from '../../../assets/trash.png'
 import TableItem from "../../common/TableItem";
+import EditBackgroundVerification from "./EditBackgroundVerification";
+import ClientEdit from "./ClientEdit";
+import DeleteModal from "./DeleteModal";
+import { useNavigate } from "react-router-dom";
+
 
 const ServiceManagementItem = () => {
   const [backgroundVerification, setBackgroundVerification] = useState(true)
+  const [backgroundshow, setBackgroundshow] = useState(true)
+  const [backgroundedit, setBackgroundedit] = useState(false)
   const [client, setClient] = useState(true)
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const navigate = useNavigate()
   const columns = [
     {
       title: "CLIENT ID",
@@ -78,9 +87,9 @@ const ServiceManagementItem = () => {
       key: "actions",
       render: (text, record) => (
           <div className="flex gap-4">
-        <img src={trash} className='w-[22px] h-[22px] cursor-pointer'/>
-        <img src={pencil} className='w-[22px] h-[22px] cursor-pointer'/>
-        <img src={eye} className='w-[22px] h-[22px] cursor-pointer'/>
+        <img src={trash} className='w-[22px] h-[22px] cursor-pointer' />
+        <img src={pencil} className='w-[22px] h-[22px] cursor-pointer' onClick={()=> navigate(`/servicemanagement/pre-booking/edit/${record.key}`)}/>
+        <img src={eye} className='w-[22px] h-[22px] cursor-pointer' onClick={()=> navigate(`/servicemanagement/pre-booking/${record.key}`)}/>
         </div>
       ),
     },
@@ -153,8 +162,8 @@ const ServiceManagementItem = () => {
       render: (text, record) => (
           <div className="flex gap-4">
         <img src={trash} className='w-[22px] h-[22px] cursor-pointer'/>
-        <img src={pencil} className='w-[22px] h-[22px] cursor-pointer'/>
-        <img src={eye} className='w-[22px] h-[22px] cursor-pointer'/>
+        <img src={pencil} className='w-[22px] h-[22px] cursor-pointer' onClick={()=> navigate(`/servicemanagement/pre-booking/${record.key}`)}/>
+        <img src={eye} className='w-[22px] h-[22px] cursor-pointer' onClick={()=> navigate(`/servicemanagement/pre-booking/${record.key}`)}/>
         </div>
       ),
     },
@@ -1205,46 +1214,57 @@ const ServiceManagementItem = () => {
         dataIndex: "actions",
         key: "actions",
         render: (text, record) => (
-            <div className="flex gap-4">
-        
+            <div className="flex">
           <img src={eye} className='w-[22px] h-[22px] cursor-pointer'/>
           </div>
         ),
       },
     ]
-  
+    const handleDelete = (i) => {
+   
+      if (i >= 0 && i < dataSource.length) {
+          let newArray = dataSource.slice(); // Create a copy of the original array
+          newArray.splice(i, 1); // Remove 1 element at the specified index
+          setDataSource(newArray); // Update the state with the new array
+        }
+    };
   return (
+    <>
+
     <div className="p-3 w-[80%] grid gap-5 box-border pb-20">
       <HeaderSearch />
       <div className="flex justify-between">
       <div className={`flex gap-5 bg-white p-2 h-[38px] rounded-t-[6px] font-publicsans text-[15px] font-[400] border-b-2 ${backgroundVerification?'w-[100%]' : 'w-[70%]'}`}>
-        <p className={`${backgroundVerification ? 'border-b-2 border-[#002550] text-[#002550]' : ''}  pb-7 cursor-pointer`} onClick={()=> setBackgroundVerification(true)}>
+        <p className='border-b-2 border-[#002550] text-[#002550] pb-7 cursor-pointer' >
           Background Verification
         </p>
-        <p className={`${!backgroundVerification ? 'border-b-2 border-black text-[#002550]' : ''}  pb-7 cursor-pointer`} onClick={()=> setBackgroundVerification(false)}>Virtual Site Visit</p>
+        <p className='pb-7 cursor-pointer'onClick={()=> navigate('/servicemanagement/pre-booking/virtualsite/client')}>Virtual Site Visit</p>
 
         
       </div>
-      { !backgroundVerification &&
-      <div className="flex text-[12px] font-[600] font-opensans">
-          <button className={`${client ? 'bg-[#002550] text-white' : 'bg-white'} p-2 px-8  hover:opacity-80`} onClick={()=> setClient(true)}>Client Side</button>
-          <button className={`${!client ? 'bg-[#002550] text-white' : 'bg-white'} p-2 px-8  hover:opacity-80`} onClick={()=> setClient(false)}>Pilot Side</button>
-        </div>
-}
+    
+    
+
       </div>
 
       <div className="mt-5">
-        {
-          backgroundVerification ? <TableItem data={dataSource} columns={columns}/> 
-          : (
-            client ? <TableItem data={clientData} columns={Clientcolumns}/> : 
-            <TableItem data={clientData} columns={Pilotcolumns}/>  
-          )
+        
+         <TableItem data={dataSource} columns={columns}/> 
+         
       
-        }
+        
        
       </div>
+
     </div>
+
+   
+
+
+    
+
+<DeleteModal handleDelete={handleDelete} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}/>
+    </>
   );
 };
 

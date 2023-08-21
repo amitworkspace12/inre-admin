@@ -8,6 +8,7 @@ import TableItem from '../common/TableItem'
 import refresh from '../../assets/refresh.png'
 import PersonalDetails from './PersonalDetails'
 import DeleteWarning from './DeleteWarning'
+import { useNavigate } from 'react-router-dom'
 
 
 
@@ -335,6 +336,7 @@ const UserManagementItems = () => {
   const [editActive, setEditActive] = useState()
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [edit, setEdit] = useState(false)
+  const navigate = useNavigate()
 
   const handleView = (record) => {
     localStorage.setItem('key', record.key)
@@ -369,7 +371,7 @@ const UserManagementItems = () => {
         multiple: 4,
       },
       render: (text, record) => (
-        <span className="custom-column-style font-[600]">{text}</span>
+        <span className="custom-column-style font-[600] ">{text}</span>
       ),
     },
     {
@@ -403,8 +405,8 @@ const UserManagementItems = () => {
       render: (text, record) => (
           <div className="flex gap-4">
         <img src={trash} className='w-[22px] h-[22px] cursor-pointer' onClick={()=>{localStorage.setItem('key',record.key); setIsModalOpen(true)}}/>
-        <img src={pencil} className='w-[22px] h-[22px] cursor-pointer' onClick={() =>handleEdit(record)}/>
-        <img src={eye} className='w-[22px] h-[22px] cursor-pointer' onClick={() =>handleView(record)}/>
+        <img src={pencil} className='w-[22px] h-[22px] cursor-pointer' onClick={()=>navigate(`/usermanagement/${record.key}`)}/>
+        <img src={eye} className='w-[22px] h-[22px] cursor-pointer' onClick={()=>navigate(`/usermanagement/${record.key}`)}/>
         <img src={refresh} className='w-[22px] h-[22px] cursor-pointer'/>
         </div>
       ),
@@ -413,16 +415,13 @@ const UserManagementItems = () => {
   return (
     <div className='p-3 w-[80%] grid gap-5 box-border pb-20 items-start'>
       <HeaderSearch/>
-      {
-        editActive ? <PersonalDetails edit={edit} setEdit={setEdit} setEditActive={setEditActive} dataSource={dataSource} setDataSource={setDataSource}/>  :
-        <>
+     
 <div className='flex flex-col gap-3 h-fit'>
     <p className='text-[18px] font-[500] font-poppins leading-[27px]'>User Management</p>
     
 </div>
 <TableItem data={dataSource} columns={columns} setEditActive={setEditActive}/>
-</>
-}
+
 <DeleteWarning handleDelete={handleDelete} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}/>
     </div>
   )

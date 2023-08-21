@@ -90,7 +90,12 @@ const TableItem = ({data, columns}) => {
 <div className='flex justify-between'>
         <div className='flex items-center gap-[130px]'>
             <p className='font-[400] text-[15px] leading-[22px]'>Show</p>
-           
+           {/* <select className="h-[38px] w-[100px] px-2 outline-none border-[1px] border-[#DBDADE] rounded-[6px]">
+            <option className="p-2">7</option>
+            <option className="p-2">14</option>
+            <option className="p-2">21</option>
+            <option className="p-2">28</option>
+           </select> */}
             <p className='font-[400] text-[15px] leading-[22px]'>Entries</p>
         </div>
         <div>
@@ -102,6 +107,8 @@ const TableItem = ({data, columns}) => {
         columns={columns}
         dataSource={dataSource}
         onChange={onChange}
+        scroll={{ x: true }}
+       
         components={{
           header: {
             cell: (props) => (
@@ -114,7 +121,7 @@ const TableItem = ({data, columns}) => {
         }}
         // pagination={{pageSize:6}}
         pagination={paginationConfig}
-        className="relative font-publicsans"
+        className="relative font-publicsans w-full"
         // onChange={handlePageChange}
         
       />

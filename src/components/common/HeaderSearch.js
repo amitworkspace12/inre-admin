@@ -3,8 +3,10 @@ import { IoIosSearch } from 'react-icons/io'
 import { IoNotificationsOutline } from 'react-icons/io5'
 import Pic  from '../../assets/Avatar.png'
 import { Avatar } from 'antd'
+import { useNavigate } from 'react-router-dom'
 
 const HeaderSearch = () => {
+  const navigate = useNavigate()
   return (
     <div className='flex w-full bg-white items-center h-[62px] rounded-[6px] px-5 justify-between'>
     <div className='w-[70%] relative'>
@@ -14,7 +16,7 @@ const HeaderSearch = () => {
 
   <div className='flex gap-5 items-center'>
   <div className='relative w-fit cursor-pointer'>
-   <IoNotificationsOutline size={25}/>
+   <IoNotificationsOutline size={25} onClick={()=> navigate('/notifications')}/>
    <p className='absolute text-[12px] font-publicsans h-[14px] w-[14px] rounded-full bg-[red] text-white grid place-content-center -top-[1px] right-0 leading-[14px]'>4</p>
   </div>
 

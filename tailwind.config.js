@@ -1,12 +1,14 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+import withMT from '@material-tailwind/react/utils/withMT'
+module.exports = withMT({
   content: ["./src/**/*.{html,js}"],
   theme: {
     fontFamily:{
       'inter':['Inter', 'sans-serif'],
       'opensans':['Open Sans', 'sans-serif'],
       'publicsans':['Public Sans', 'sans-serif'],
-      "poppins":['Poppins', 'sans-serif']
+      "poppins":['Poppins', 'sans-serif'],
+    "montserrat": ['Montserrat', 'sans-serif']
     },
     extend: {
       backgroundImage:{
@@ -18,4 +20,4 @@ module.exports = {
     },
   },
   plugins: [],
-}
+})

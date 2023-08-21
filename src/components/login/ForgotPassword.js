@@ -38,10 +38,10 @@ const ForgotPassword = () => {
   return (
     <div className="w-full h-screen flex">
     { !passwordActive ?
-      <div className="w-[50%] h-full flex items-center justify-center font-opensans">
-        <div className="grid gap-10 w-[60%]">
+      <div className="md:w-[50%] w-full h-full flex items-center justify-center font-opensans">
+        <div className="grid gap-10 lg:w-[70%] md:w-[80%] w-[90%] xl:w-[60%]">
           <div>
-            <p className="text-[40px] font-[700] text-[#002550] leading-[54px]">
+            <p className="md:text-[40px] text-[26px] font-[700] text-[#002550] leading-[54px]">
               Set New Password
             </p>
             <p className="leading-[24px] font-[400]">
@@ -91,21 +91,10 @@ const ForgotPassword = () => {
             
             </div>
 
-            <button
-            id="myform"
-              type="submit"
-              className="bg-[#002550] w-full h-[44px] rounded-[8px] text-white font-inter font-[500]"
-              onClick={(e)=> handleSubmit(e)}
-            >
-              Verify
-            </button>
+           
           </form>
 
-          <div>
-           
-          </div>
-
-          <div className="w-full flex h-[59px] items-center justify-between border-[#1A1A1A] border-opacity-20 border-[1px] rounded-[8px] shadow-sm px-5 -mt-4">
+          <div className="w-full flex h-[59px] items-center justify-between border-[#1A1A1A] border-opacity-20 border-[1px] rounded-[8px] shadow-sm px-5 ">
             <div className="flex gap-3  ">
               <input type="checkbox" />
               <p className="text-[#344054] font-[500] font-inter">
@@ -116,12 +105,25 @@ const ForgotPassword = () => {
               <img src={captcha} alt="captcha"/>
             </div>
           </div>
+          <button
+            id="myform"
+              type="submit"
+              className="bg-[#002550] w-full h-[44px] rounded-[8px] text-white font-inter font-[500] -mt-4"
+              onClick={(e)=> handleSubmit(e)}
+            >
+              Verify
+            </button>
+          <div>
+           
+          </div>
+
+        
         </div>
       </div>
       :
       <SetPassword/>
       }
-      <div className="w-[50%] h-full bg-cover bg-center bg-no-repeat bg-login">
+      <div className="hidden md:grid w-[50%] h-full bg-cover bg-center bg-no-repeat bg-login">
         <div className="w-full h-full flex items-center justify-center text-white flex-col gap-20 font-opensans">
           <img src={logo} alt="logo" />
           <div className="w-full text-center flex items-center justify-center flex-col">

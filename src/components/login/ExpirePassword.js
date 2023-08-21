@@ -12,10 +12,10 @@ const ExpirePassword = () => {
         setShowPassword(prev => !prev)
     }
   return (
-    <div className='w-[50%] h-full flex items-center justify-center font-opensans'>
-    <div className='grid gap-10 w-[60%]'>
+    <div className='md:w-[50%] w-full h-full flex items-center justify-center font-opensans'>
+    <div className='grid gap-10 xl:w-[60%] md:w-[80%] w-[90%] lg:w-[70%]'>
         <div>
-        <p className='text-[40px] font-[700] text-[#002550] leading-[54px]'>Set New Password</p>
+        <p className='md:text-[40px] text-[26px] font-[700] text-[#002550] leading-[54px]'>Set New Password</p>
         <p className='leading-[24px] font-[400]'>Let’s login with your previous account. </p>
         </div>
 
